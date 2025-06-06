@@ -113,6 +113,16 @@ app.get('/menu', async (req, res) => {
   }
 });
 
+app.get('/testing-menu', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT * FROM menu');
+    res.json(result.rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Error al obtener el menú');
+  }
+});
+
 //obtener todas las comandas
 app.get('/comandas', async (req, res) => {
   try {
